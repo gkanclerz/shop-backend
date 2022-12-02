@@ -8,7 +8,7 @@ import pl.nullpointerexception.shop.admin.product.dto.AdminProductDto;
 import pl.nullpointerexception.shop.admin.product.model.AdminProduct;
 import pl.nullpointerexception.shop.admin.product.service.AdminProductService;
 
-import java.util.Locale;
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,12 +28,12 @@ public class AdminProductController {
     }
 
     @PostMapping("/admin/products")
-    public AdminProduct createProduct(@RequestBody AdminProductDto adminProductDto) {
+    public AdminProduct createProduct(@RequestBody @Valid AdminProductDto adminProductDto) {
         return productService.createProduct(mapAdminProduct(adminProductDto, EMPTY_ID));
     }
 
     @PutMapping("/admin/products/{id}")
-    public AdminProduct updateProduct(@RequestBody AdminProductDto adminProductDto, @PathVariable Long id) {
+    public AdminProduct updateProduct(@RequestBody @Valid AdminProductDto adminProductDto, @PathVariable Long id) {
         return productService.updateProduct(mapAdminProduct(adminProductDto, id));
     }
 
@@ -44,7 +44,7 @@ public class AdminProductController {
                 .description(adminProductDto.getDescription())
                 .category(adminProductDto.getCategory())
                 .price(adminProductDto.getPrice())
-                .currency(adminProductDto.getCurrency().toUpperCase(Locale.ROOT))
+                .currency(adminProductDto.getCurrency())
                 .build();
     }
 }
