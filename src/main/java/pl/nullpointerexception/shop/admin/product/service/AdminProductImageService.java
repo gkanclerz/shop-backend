@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import pl.nullpointerexception.shop.admin.common.utils.SlugifyUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +19,7 @@ public class AdminProductImageService {
     private String uploadDir = "";
 
     public String uploadImage(String filename, InputStream inputStream){
-        String newFilename = UploadedFilesNameUtils.slugifyFileName(filename);
+        String newFilename = SlugifyUtils.slugifyFileName(filename);
         newFilename = ExistingFileRenameUtils.renameIfExists(Path.of(uploadDir), newFilename);
         Path filePath = Paths.get(uploadDir).resolve(newFilename);
 

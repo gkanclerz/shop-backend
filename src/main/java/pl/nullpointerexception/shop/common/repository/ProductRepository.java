@@ -1,9 +1,9 @@
-package pl.nullpointerexception.shop.product.repository;
+package pl.nullpointerexception.shop.common.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.nullpointerexception.shop.product.model.Product;
+import pl.nullpointerexception.shop.common.model.Product;
 
 import java.util.Optional;
 

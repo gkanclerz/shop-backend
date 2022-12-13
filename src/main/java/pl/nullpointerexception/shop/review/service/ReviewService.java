@@ -2,7 +2,7 @@ package pl.nullpointerexception.shop.review.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.nullpointerexception.shop.review.model.Review;
+import pl.nullpointerexception.shop.common.model.Review;
 import pl.nullpointerexception.shop.review.repository.ReviewRepository;
 
 @Service

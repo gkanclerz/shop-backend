@@ -1,10 +1,8 @@
-package pl.nullpointerexception.shop.category.model;
+package pl.nullpointerexception.shop.common.model;
 
 import lombok.Getter;
-import pl.nullpointerexception.shop.product.model.Product;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter

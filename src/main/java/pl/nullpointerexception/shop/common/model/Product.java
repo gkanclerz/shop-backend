@@ -1,9 +1,9 @@
-package pl.nullpointerexception.shop.product.model;
+package pl.nullpointerexception.shop.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.nullpointerexception.shop.review.model.Review;
+import pl.nullpointerexception.shop.common.model.Review;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.nullpointerexception.shop.review.dto.ReviewDto;
-import pl.nullpointerexception.shop.review.model.Review;
+import pl.nullpointerexception.shop.common.model.Review;
 import pl.nullpointerexception.shop.review.service.ReviewService;
 
 import javax.validation.Valid;

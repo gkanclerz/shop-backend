@@ -9,8 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pl.nullpointerexception.shop.product.controller.dto.ProductListDto;
-import pl.nullpointerexception.shop.product.model.Product;
+import pl.nullpointerexception.shop.common.dto.ProductListDto;
+import pl.nullpointerexception.shop.common.model.Product;
 import pl.nullpointerexception.shop.product.service.ProductService;
 
 import javax.validation.constraints.Pattern;

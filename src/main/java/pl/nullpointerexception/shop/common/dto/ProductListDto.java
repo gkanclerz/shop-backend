@@ -1,4 +1,4 @@
-package pl.nullpointerexception.shop.product.controller.dto;
+package pl.nullpointerexception.shop.common.dto;
 
 import lombok.Builder;
 import lombok.Getter;
