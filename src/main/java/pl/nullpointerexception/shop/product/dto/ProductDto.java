@@ -1,23 +1,14 @@
-package pl.nullpointerexception.shop.common.model;
+package pl.nullpointerexception.shop.product.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import pl.nullpointerexception.shop.common.model.Review;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Entity
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDto {
     private Long id;
     private String name;
     private Long categoryId;
@@ -27,4 +18,5 @@ public class Product {
     private String currency;
     private String image;
     private String slug;
+    private List<ReviewDto> reviews;
 }
