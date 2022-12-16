@@ -30,7 +30,7 @@ public class Cart {
             items = new ArrayList<>();
         }
         items.stream()
-                .filter(item -> Objects.equals(cartItem.getProduct().getId(), cartItem.getProduct().getId()))
+                .filter(item -> Objects.equals(item.getProduct().getId(), cartItem.getProduct().getId()))
                 .findFirst()
                 .ifPresentOrElse(
                         item -> item.setQuantity(item.getQuantity()+ 1),
