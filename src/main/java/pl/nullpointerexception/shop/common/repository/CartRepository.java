@@ -1,9 +1,9 @@
-package pl.nullpointerexception.shop.cart.repository;
+package pl.nullpointerexception.shop.common.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import pl.nullpointerexception.shop.cart.model.Cart;
+import pl.nullpointerexception.shop.common.model.Cart;
 
 import java.time.LocalDateTime;
 import java.util.List;

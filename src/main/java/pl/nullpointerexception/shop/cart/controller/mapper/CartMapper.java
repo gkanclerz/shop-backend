@@ -4,8 +4,8 @@ import pl.nullpointerexception.shop.cart.controller.dto.CartSummaryDto;
 import pl.nullpointerexception.shop.cart.controller.dto.CartSummaryItemDto;
 import pl.nullpointerexception.shop.cart.controller.dto.ProductDto;
 import pl.nullpointerexception.shop.cart.controller.dto.SummaryDto;
-import pl.nullpointerexception.shop.cart.model.Cart;
-import pl.nullpointerexception.shop.cart.model.CartItem;
+import pl.nullpointerexception.shop.common.model.Cart;
+import pl.nullpointerexception.shop.common.model.CartItem;
 import pl.nullpointerexception.shop.common.model.Product;
 
 import java.math.BigDecimal;

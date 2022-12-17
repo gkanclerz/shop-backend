@@ -1,4 +1,4 @@
-package pl.nullpointerexception.shop.cart.model;
+package pl.nullpointerexception.shop.common.model;
 
 import lombok.*;
 import pl.nullpointerexception.shop.common.model.Product;
