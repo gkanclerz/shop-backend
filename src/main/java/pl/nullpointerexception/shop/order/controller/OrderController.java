@@ -10,6 +10,7 @@ import pl.nullpointerexception.shop.order.model.dto.InitOrder;
 import pl.nullpointerexception.shop.order.model.dto.OrderDto;
 import pl.nullpointerexception.shop.order.model.dto.OrderSummary;
 import pl.nullpointerexception.shop.order.service.OrderService;
+import pl.nullpointerexception.shop.order.service.PaymentService;
 import pl.nullpointerexception.shop.order.service.ShipmentService;
 
 @RestController
@@ -19,6 +20,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final ShipmentService shipmentService;
+    private final PaymentService paymentService;
 
     @PostMapping
     public OrderSummary placeOrder(@RequestBody OrderDto orderDto){
@@ -29,6 +31,8 @@ public class OrderController {
     public InitOrder initData(){
         return InitOrder.builder()
                 .shipments(shipmentService.getShipments())
+                .payments(paymentService.getPayments())
                 .build();
     }
+
 }
