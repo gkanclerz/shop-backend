@@ -1,6 +1,9 @@
 package pl.nullpointerexception.shop.order.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +15,9 @@ import java.math.BigDecimal;
 
 @Entity
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

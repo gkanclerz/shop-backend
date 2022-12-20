@@ -1,5 +1,6 @@
 package pl.nullpointerexception.shop.order.model.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.Email;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
+@Builder
 public class OrderDto {
     @NotBlank
     private String firstname;
