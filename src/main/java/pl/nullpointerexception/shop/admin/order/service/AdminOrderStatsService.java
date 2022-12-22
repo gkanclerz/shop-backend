@@ -31,6 +31,8 @@ public class AdminOrderStatsService {
             result.put(i, aggregateValues(i, orders));
         }
         return AdminOrdersStats.builder()
+                .ordersCount(result.values().stream().map(o -> o.orders).reduce(Long::sum).orElse(0L))
+                .salesSum(result.values().stream().map(o -> o.sales).reduce(BigDecimal::add).orElse(BigDecimal.ZERO))
                 .label(result.keySet().stream().toList())
                 .sale(result.values().stream().map(o -> o.sales).toList())
                 .order(result.values().stream().map(o -> o.orders).toList())

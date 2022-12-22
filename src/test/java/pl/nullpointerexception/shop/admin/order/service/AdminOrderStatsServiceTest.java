@@ -37,6 +37,8 @@ class AdminOrderStatsServiceTest {
         Assertions.assertThat(result.getOrder().get(1)).isEqualTo(2L);
         Assertions.assertThat(result.getSale().get(0)).isEqualTo(new BigDecimal("61.00"));
         Assertions.assertThat(result.getSale().get(1)).isEqualTo(new BigDecimal("40.00"));
+        Assertions.assertThat(result.getOrdersCount()).isEqualTo(5L);
+        Assertions.assertThat(result.getSalesSum()).isEqualTo(new BigDecimal("121.00"));
     }
 
     private static List<AdminOrder> createAdminOrders() {
@@ -55,6 +57,11 @@ class AdminOrderStatsServiceTest {
                 AdminOrder.builder()
                         .grossValue(new BigDecimal("20.00"))
                         .placeDate(LocalDateTime.now().withDayOfMonth(2))
-                        .build());
+                        .build(),
+                AdminOrder.builder()
+                        .grossValue(new BigDecimal("20.00"))
+                        .placeDate(LocalDateTime.now().withDayOfMonth(3))
+                        .build()
+        );
     }
 }
