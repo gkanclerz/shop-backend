@@ -3,9 +3,9 @@ package pl.nullpointerexception.shop.admin.order.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.nullpointerexception.shop.admin.order.model.AdminOrder;
-import pl.nullpointerexception.shop.admin.order.model.AdminOrderStatus;
 import pl.nullpointerexception.shop.admin.order.model.dto.AdminOrdersStats;
 import pl.nullpointerexception.shop.admin.order.repository.AdminOrderRepository;
+import pl.nullpointerexception.shop.common.model.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ public class AdminOrderStatsService {
         List<AdminOrder> orders = adminOrderRepository.findAllByPlaceDateIsBetweenAndOrderStatus(
                 from,
                 to,
-                AdminOrderStatus.COMPLETED
+                OrderStatus.COMPLETED
         );
         TreeMap<Integer, AdminOrderStatsValue> result = new TreeMap<>();
         for (int i = from.getDayOfMonth() ; i <= to.getDayOfMonth(); i++){

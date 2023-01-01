@@ -12,7 +12,7 @@ import pl.nullpointerexception.shop.common.model.CartItem;
 import pl.nullpointerexception.shop.common.model.Product;
 import pl.nullpointerexception.shop.common.repository.CartItemRepository;
 import pl.nullpointerexception.shop.common.repository.CartRepository;
-import pl.nullpointerexception.shop.order.model.OrderStatus;
+import pl.nullpointerexception.shop.common.model.OrderStatus;
 import pl.nullpointerexception.shop.order.model.Payment;
 import pl.nullpointerexception.shop.order.model.PaymentType;
 import pl.nullpointerexception.shop.order.model.Shipment;

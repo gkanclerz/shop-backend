@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.nullpointerexception.shop.common.model.OrderStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,8 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;

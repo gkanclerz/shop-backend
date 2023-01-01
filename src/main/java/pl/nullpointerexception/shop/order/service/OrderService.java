@@ -12,12 +12,16 @@ import pl.nullpointerexception.shop.order.model.Order;
 import pl.nullpointerexception.shop.order.model.Payment;
 import pl.nullpointerexception.shop.order.model.Shipment;
 import pl.nullpointerexception.shop.order.model.dto.OrderDto;
+import pl.nullpointerexception.shop.order.model.dto.OrderListDto;
 import pl.nullpointerexception.shop.order.model.dto.OrderSummary;
 import pl.nullpointerexception.shop.order.repository.OrderRepository;
 import pl.nullpointerexception.shop.order.repository.OrderRowRepository;
 import pl.nullpointerexception.shop.order.repository.PaymentRepository;
 import pl.nullpointerexception.shop.order.repository.ShipmentRepository;
 
+import java.util.List;
+
+import static pl.nullpointerexception.shop.order.service.mapper.OrderDtoMapper.mapToOrderListDto;
 import static pl.nullpointerexception.shop.order.service.mapper.OrderEmailMessageMapper.createEmailMessage;
 import static pl.nullpointerexception.shop.order.service.mapper.OrderMapper.createNewOrder;
 import static pl.nullpointerexception.shop.order.service.mapper.OrderMapper.createOrderSummary;
@@ -76,4 +80,7 @@ public class OrderService {
                 .toList();
     }
 
+    public List<OrderListDto> getOrdersForCustomer(Long userId) {
+        return mapToOrderListDto(orderRepository.findByUserId(userId));
+    }
 }

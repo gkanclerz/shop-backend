@@ -4,7 +4,7 @@ import pl.nullpointerexception.shop.common.model.Cart;
 import pl.nullpointerexception.shop.common.model.CartItem;
 import pl.nullpointerexception.shop.order.model.Order;
 import pl.nullpointerexception.shop.order.model.OrderRow;
-import pl.nullpointerexception.shop.order.model.OrderStatus;
+import pl.nullpointerexception.shop.common.model.OrderStatus;
 import pl.nullpointerexception.shop.order.model.Payment;
 import pl.nullpointerexception.shop.order.model.Shipment;
 import pl.nullpointerexception.shop.order.model.dto.OrderDto;

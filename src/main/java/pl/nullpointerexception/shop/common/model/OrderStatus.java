@@ -1,6 +1,6 @@
-package pl.nullpointerexception.shop.admin.order.model;
+package pl.nullpointerexception.shop.common.model;
 
-public enum AdminOrderStatus {
+public enum OrderStatus {
     NEW("Nowe"),
     PAID("Opłacone"),
     PROCESSING("Przetwarzanie"),
@@ -11,7 +11,7 @@ public enum AdminOrderStatus {
 
     private String value;
 
-    AdminOrderStatus(String value) {
+    OrderStatus(String value) {
         this.value = value;
     }
 

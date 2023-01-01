@@ -1,10 +1,10 @@
 package pl.nullpointerexception.shop.admin.order.service;
 
-import pl.nullpointerexception.shop.admin.order.model.AdminOrderStatus;
+import pl.nullpointerexception.shop.common.model.OrderStatus;
 
 public class AdminOrderEmailMessage {
 
-    public static String createProcessingEmailMessage(Long id, AdminOrderStatus newStatus) {
+    public static String createProcessingEmailMessage(Long id, OrderStatus newStatus) {
         return "Twoje zamówienie: " + id + " jest przetwarzane." +
                 "\n Status został zmieniony na: " + newStatus.getValue() +
                 "\n Twoje zamówienie jest przetwarzane przez naszych pracowników" +
@@ -13,14 +13,14 @@ public class AdminOrderEmailMessage {
                 "\n Sklep Shop";
     }
 
-    public static String createCompletedEmailMessage(Long id, AdminOrderStatus newStatus){
+    public static String createCompletedEmailMessage(Long id, OrderStatus newStatus){
         return "Twoje zamówienie: " + id + " zostało zrealizowane." +
                 "\n Status twojego zamówienia został zmieniony na: " + newStatus.getValue() +
                 "\n Dziekujęmy za zakupy i zapraszamy ponownie!" +
                 "\n Sklep shop";
     }
 
-    public static String createRefundEmailMessage(Long id, AdminOrderStatus newStatus){
+    public static String createRefundEmailMessage(Long id, OrderStatus newStatus){
         return "Twoje zamówienie: " + id + " zostało zwrócone." +
                 "\n Status twojego zamówienia został zmieniony na: " + newStatus.getValue() +
                 "\n Pozdrawiamy" +
