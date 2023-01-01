@@ -6,11 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.nullpointerexception.shop.common.mail.EmailClientService;
 import pl.nullpointerexception.shop.common.model.Cart;
 
-import pl.nullpointerexception.shop.common.model.CartItem;
 import pl.nullpointerexception.shop.common.repository.CartItemRepository;
 import pl.nullpointerexception.shop.common.repository.CartRepository;
 import pl.nullpointerexception.shop.order.model.Order;
-import pl.nullpointerexception.shop.order.model.OrderRow;
 import pl.nullpointerexception.shop.order.model.Payment;
 import pl.nullpointerexception.shop.order.model.Shipment;
 import pl.nullpointerexception.shop.order.model.dto.OrderDto;
@@ -19,8 +17,6 @@ import pl.nullpointerexception.shop.order.repository.OrderRepository;
 import pl.nullpointerexception.shop.order.repository.OrderRowRepository;
 import pl.nullpointerexception.shop.order.repository.PaymentRepository;
 import pl.nullpointerexception.shop.order.repository.ShipmentRepository;
-
-import java.time.format.DateTimeFormatter;
 
 import static pl.nullpointerexception.shop.order.service.mapper.OrderEmailMessageMapper.createEmailMessage;
 import static pl.nullpointerexception.shop.order.service.mapper.OrderMapper.createNewOrder;
@@ -41,11 +37,11 @@ public class OrderService {
     private final EmailClientService emailClientService;
 
     @Transactional
-    public OrderSummary placeOrder(OrderDto orderDto) {
+    public OrderSummary placeOrder(OrderDto orderDto, Long userId) {
         Cart cart = cartRepository.findById(orderDto.getCartId()).orElseThrow();
         Shipment shipment = shipmentRepository.findById(orderDto.getShipmentId()).orElseThrow();
         Payment payment = paymentRepository.findById(orderDto.getPaymentId()).orElseThrow();
-        Order newOrder = orderRepository.save(createNewOrder(orderDto, cart, shipment, payment));
+        Order newOrder = orderRepository.save(createNewOrder(orderDto, cart, shipment, payment, userId));
         saveOrderRows(cart, newOrder.getId(),shipment);
         clearOrderCart(orderDto);
         sendConfimEmail(newOrder);

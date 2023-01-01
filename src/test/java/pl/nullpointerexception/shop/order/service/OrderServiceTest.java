@@ -1,7 +1,5 @@
 package pl.nullpointerexception.shop.order.service;
 
-import liquibase.pro.packaged.B;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,7 +29,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -64,8 +61,9 @@ class OrderServiceTest {
         when(paymentRepository.findById(any())).thenReturn(createPayment());
         when(orderRepository.save(any())).thenAnswer(invocation -> invocation.getArguments()[0]);
         when(emailClientService.getInstance()).thenReturn(new FakeEmailService());
+        Long userId = 1L;
         //when
-        OrderSummary orderSummary = orderService.placeOrder(orderDto);
+        OrderSummary orderSummary = orderService.placeOrder(orderDto, userId);
 
         //then
         assertThat(orderSummary).isNotNull();
