@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.nullpointerexception.shop.security.model.User;
-import pl.nullpointerexception.shop.security.repository.UserRepository;
+import pl.nullpointerexception.shop.common.model.User;
+import pl.nullpointerexception.shop.common.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

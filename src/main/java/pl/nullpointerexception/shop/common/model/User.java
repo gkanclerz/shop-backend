@@ -1,9 +1,11 @@
-package pl.nullpointerexception.shop.security.model;
+package pl.nullpointerexception.shop.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import pl.nullpointerexception.shop.security.model.UserRole;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -22,6 +24,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

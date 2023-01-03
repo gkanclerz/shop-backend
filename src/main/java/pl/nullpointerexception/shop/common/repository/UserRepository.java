@@ -1,7 +1,7 @@
-package pl.nullpointerexception.shop.security.repository;
+package pl.nullpointerexception.shop.common.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.nullpointerexception.shop.security.model.User;
+import pl.nullpointerexception.shop.common.model.User;
 
 import java.util.Optional;
 
