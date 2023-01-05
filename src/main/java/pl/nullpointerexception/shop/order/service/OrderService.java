@@ -10,6 +10,7 @@ import pl.nullpointerexception.shop.common.repository.CartItemRepository;
 import pl.nullpointerexception.shop.common.repository.CartRepository;
 import pl.nullpointerexception.shop.order.model.Order;
 import pl.nullpointerexception.shop.order.model.Payment;
+import pl.nullpointerexception.shop.order.model.PaymentType;
 import pl.nullpointerexception.shop.order.model.Shipment;
 import pl.nullpointerexception.shop.order.model.dto.OrderDto;
 import pl.nullpointerexception.shop.order.model.dto.OrderListDto;
@@ -18,6 +19,7 @@ import pl.nullpointerexception.shop.order.repository.OrderRepository;
 import pl.nullpointerexception.shop.order.repository.OrderRowRepository;
 import pl.nullpointerexception.shop.order.repository.PaymentRepository;
 import pl.nullpointerexception.shop.order.repository.ShipmentRepository;
+import pl.nullpointerexception.shop.order.service.payment.p24.PaymentMethodP24;
 
 import java.util.List;
 
@@ -39,6 +41,7 @@ public class OrderService {
     private final ShipmentRepository shipmentRepository;
     private final PaymentRepository paymentRepository;
     private final EmailClientService emailClientService;
+    private final PaymentMethodP24 paymentMethodP24;
 
     @Transactional
     public OrderSummary placeOrder(OrderDto orderDto, Long userId) {
@@ -48,8 +51,16 @@ public class OrderService {
         Order newOrder = orderRepository.save(createNewOrder(orderDto, cart, shipment, payment, userId));
         saveOrderRows(cart, newOrder.getId(),shipment);
         clearOrderCart(orderDto);
+        String redirectUrl = initPaymentIfNeeded(newOrder);
         sendConfimEmail(newOrder);
-        return createOrderSummary(payment, newOrder);
+        return createOrderSummary(payment, newOrder, redirectUrl);
+    }
+
+    private String initPaymentIfNeeded(Order newOrder) {
+        if(newOrder.getPayment().getType() == PaymentType.P24_ONLINE){
+            return paymentMethodP24.initPayment(newOrder);
+        }
+        return null;
     }
 
     private void sendConfimEmail(Order newOrder) {
