@@ -137,15 +137,15 @@ public class PaymentMethodP24 {
     }
 
     private String createReceivedSign(NotificationReceiveDto receiveDto, Order order) {
-        String json = "{\",\"merchantId\":" + config.getMerchantId() +
+        String json = "{\"merchantId\":" + config.getMerchantId() +
                 "\",\"posId\":" + config.getPosId() +
-                "\",\"sessionId\":" + createSessionId(order) +
+                ",\"sessionId\":\"" + createSessionId(order) +
                 "\",\"amount\":" + order.getGrossValue().movePointRight(2).intValue() +
-                "\",\"originAmount\":" + order.getGrossValue().movePointRight(2).intValue() +
-                "\",\"currency\":\"PLN\"" +
-                "\",\"orderId\":" + receiveDto.getOrderId() +
-                "\",\"methodId\":" + receiveDto.getMethodId() +
-                "\",\"statement\":" + receiveDto.getStatement() +
+                ",\"originAmount\":" + order.getGrossValue().movePointRight(2).intValue() +
+                ",\"currency\":\"PLN\"" +
+                ",\"orderId\":" + receiveDto.getOrderId() +
+                ",\"methodId\":" + receiveDto.getMethodId() +
+                ",\"statement\":\"" + receiveDto.getStatement() +
                 "\",\"crc\":\"" + (config.isTestMode() ? config.getTestCrc() : config.getCrc()) + "\"}";
         return DigestUtils.sha384Hex(json);
     }
