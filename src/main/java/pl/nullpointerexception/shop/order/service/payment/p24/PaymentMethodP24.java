@@ -62,7 +62,7 @@ public class PaymentMethodP24 {
 
     public String receiveNotification(Order order, NotificationReceiveDto receiveDto, String remoteAddr) {
         log.info(receiveDto.toString());
-        validateIpAddress(remoteAddr);
+        //validateIpAddress(remoteAddr);
         validate(receiveDto,order);
         return verifyPayment(receiveDto,order);
     }
