@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.nullpointerexception.shop.common.model.OrderStatus;
 
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ import java.util.List;
 @Entity
 @Table(name = "`order`")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,5 +49,6 @@ public class Order {
     @OneToOne
     private Payment payment;
     private Long userId;
+    private String orderHash;
 
 }

@@ -1,26 +1,32 @@
 package pl.nullpointerexception.shop.order.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.nullpointerexception.shop.common.mail.EmailClientService;
 import pl.nullpointerexception.shop.common.model.Cart;
 
+import pl.nullpointerexception.shop.common.model.OrderStatus;
 import pl.nullpointerexception.shop.common.repository.CartItemRepository;
 import pl.nullpointerexception.shop.common.repository.CartRepository;
 import pl.nullpointerexception.shop.order.model.Order;
+import pl.nullpointerexception.shop.order.model.OrderLog;
 import pl.nullpointerexception.shop.order.model.Payment;
 import pl.nullpointerexception.shop.order.model.PaymentType;
 import pl.nullpointerexception.shop.order.model.Shipment;
+import pl.nullpointerexception.shop.order.model.dto.NotificationReceiveDto;
 import pl.nullpointerexception.shop.order.model.dto.OrderDto;
 import pl.nullpointerexception.shop.order.model.dto.OrderListDto;
 import pl.nullpointerexception.shop.order.model.dto.OrderSummary;
+import pl.nullpointerexception.shop.order.repository.OrderLogRepository;
 import pl.nullpointerexception.shop.order.repository.OrderRepository;
 import pl.nullpointerexception.shop.order.repository.OrderRowRepository;
 import pl.nullpointerexception.shop.order.repository.PaymentRepository;
 import pl.nullpointerexception.shop.order.repository.ShipmentRepository;
 import pl.nullpointerexception.shop.order.service.payment.p24.PaymentMethodP24;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static pl.nullpointerexception.shop.order.service.mapper.OrderDtoMapper.mapToOrderListDto;
@@ -32,9 +38,11 @@ import static pl.nullpointerexception.shop.order.service.mapper.OrderMapper.mapT
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final OrderLogRepository orderLogRepository;
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
     private final OrderRowRepository orderRowRepository;
@@ -93,5 +101,26 @@ public class OrderService {
 
     public List<OrderListDto> getOrdersForCustomer(Long userId) {
         return mapToOrderListDto(orderRepository.findByUserId(userId));
+    }
+
+    public Order getOrderByOrderHash(String orderHash) {
+        return orderRepository.findByOrderHash(orderHash).orElseThrow();
+    }
+
+    @Transactional
+    public void receiveNotification(String orderHash, NotificationReceiveDto receiveDto, String remoteAddr) {
+        Order order = getOrderByOrderHash(orderHash);
+        String status = paymentMethodP24.receiveNotification(order, receiveDto, remoteAddr);
+        if (status.equals("success")){
+            String oldOrderStatus = order.getOrderStatus().getValue();
+            order.setOrderStatus(OrderStatus.PAID);
+            orderLogRepository.save(OrderLog.builder()
+                            .created(LocalDateTime.now())
+                            .orderId(order.getId())
+                            .note("Opłacono zamówienie przez Przelewy24, id płatności: " + receiveDto.getStatement() +
+                                    " , zmieniono status z " + oldOrderStatus + " na " + order.getOrderStatus().getValue())
+                    .build());
+        }
+
     }
 }
