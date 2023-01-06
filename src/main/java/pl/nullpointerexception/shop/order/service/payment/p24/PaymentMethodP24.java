@@ -138,7 +138,7 @@ public class PaymentMethodP24 {
 
     private String createReceivedSign(NotificationReceiveDto receiveDto, Order order) {
         String json = "{\"merchantId\":" + config.getMerchantId() +
-                "\",\"posId\":" + config.getPosId() +
+                ",\"posId\":" + config.getPosId() +
                 ",\"sessionId\":\"" + createSessionId(order) +
                 "\",\"amount\":" + order.getGrossValue().movePointRight(2).intValue() +
                 ",\"originAmount\":" + order.getGrossValue().movePointRight(2).intValue() +
@@ -147,6 +147,7 @@ public class PaymentMethodP24 {
                 ",\"methodId\":" + receiveDto.getMethodId() +
                 ",\"statement\":\"" + receiveDto.getStatement() +
                 "\",\"crc\":\"" + (config.isTestMode() ? config.getTestCrc() : config.getCrc()) + "\"}";
+        log.info(json);
         return DigestUtils.sha384Hex(json);
     }
 
