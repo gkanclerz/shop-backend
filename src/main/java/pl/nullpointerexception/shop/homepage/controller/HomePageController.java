@@ -1,6 +1,7 @@
 package pl.nullpointerexception.shop.homepage.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.nullpointerexception.shop.homepage.dto.HomePageDto;
@@ -13,6 +14,7 @@ public class HomePageController {
     private final HomePageService homePageService;
 
     @GetMapping("/homePage")
+    @Cacheable("homepage")
     public HomePageDto getHomePage(){
         return new HomePageDto(homePageService.getSaleProducts());
     }

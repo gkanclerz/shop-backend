@@ -2,6 +2,7 @@ package pl.nullpointerexception.shop.admin.product.controller;
 
 import com.github.slugify.Slugify;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,6 +47,7 @@ public class AdminProductController {
         return productService.createProduct(mapAdminProduct(adminProductDto, EMPTY_ID));
     }
 
+    @CacheEvict(cacheNames = "productBySlug", key = "#adminProductDto.slug")
     @PutMapping("/admin/products/{id}")
     public AdminProduct updateProduct(@RequestBody @Valid AdminProductDto adminProductDto, @PathVariable Long id) {
         return productService.updateProduct(mapAdminProduct(adminProductDto, id));

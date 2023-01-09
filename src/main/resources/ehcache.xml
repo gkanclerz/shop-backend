@@ -1,0 +1,16 @@
+<config
+        xmlns='http://www.ehcache.org/v3'
+        xmlns:jsr107='http://www.ehcache.org/v3/jsr107'>
+
+    <cache-template name="default">
+        <expiry>
+            <ttl unit="hours">1</ttl>
+        </expiry>
+        <heap unit="entries">1000</heap>
+    </cache-template>
+
+    <cache alias="categories" uses-template="default"/>
+    <cache alias="categoriesWithProducts" uses-template="default"/>
+    <cache alias="productBySlug" uses-template="default"/>
+    <cache alias="homepage" uses-template="default"/>
+</config>

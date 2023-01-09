@@ -2,6 +2,7 @@ package pl.nullpointerexception.shop.product.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -42,6 +43,7 @@ public class ProductController {
         return new PageImpl<>(productListDtos,pageable,products.getTotalElements());
     }
 
+    @Cacheable("productBySlug")
     @GetMapping("/products/{slug}")
     public ProductDto getProduct(
             @PathVariable
