@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.nullpointerexception.shop.common.model.User;
+import pl.nullpointerexception.shop.security.exception.RegisterException;
 import pl.nullpointerexception.shop.security.model.UserRole;
 import pl.nullpointerexception.shop.common.repository.UserRepository;
 
@@ -49,10 +50,10 @@ public class LoginController {
     @PostMapping("/register")
     public Token register(@RequestBody @Valid RegisterCredentials registerCredentials){
         if (!registerCredentials.getPassword().equals(registerCredentials.getRepeatPassword())){
-            throw new IllegalArgumentException("Hasła nie są identyczne!");
+            throw new RegisterException("Hasła nie są identyczne!");
         }
         if(userRepository.existsByUsername(registerCredentials.getUsername())){
-            throw new IllegalArgumentException("Taki użytkownik już istnieje w bazie danych!");
+            throw new RegisterException("Taki użytkownik już istnieje w bazie danych!");
         }
         userRepository.save(User.builder()
                         .username(registerCredentials.getUsername())
