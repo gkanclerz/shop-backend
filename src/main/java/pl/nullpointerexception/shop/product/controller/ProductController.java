@@ -33,6 +33,7 @@ public class ProductController {
                         .name(product.getName())
                         .description(product.getDescription())
                         .price(product.getPrice())
+                        .salePrice(product.getSalePrice())
                         .currency(product.getCurrency())
                         .image(product.getImage())
                         .slug(product.getSlug())
